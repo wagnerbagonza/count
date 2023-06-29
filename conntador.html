@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+  <html lang="pt-br">
+    <head>
+      <meta charset="utf-8">
+      <title>Contagem Regressiva</title>
+
+      <!-- Chamada countdown -->
+      <script type="text/javascript">
+        var Ano = 2023;
+        var Mes = 7;
+        var Dia = 8;
+        var Hora = 00;
+        var Min = 00;
+        var Seg = 00;
+
+        function Contador() {
+          var hoje = new Date();//Obtém a data de hoje
+          var futuro = new Date(Ano,Mes-1,Dia,Hora,Min,Seg); 
+          //Esse bloco faz a conversão para inteiros
+          var seg = parseInt((futuro - hoje) / 1000);
+          var min = parseInt(seg / 60);
+          var hora = parseInt(min / 60);
+          var dia = parseInt(hora / 24);
+          //Esse bloco faz a diferença da data
+          seg = seg - (min * 60);
+          min = min - (hora * 60);
+          hora = hora - (dia * 24);
+          //Esse bloco monta o conteúdo e ser inserido na página com o método ElementByID
+          var faltam = '';
+
+          faltam += '<h1>'+(dia && dia > 1) ? dia+'</h1>'+' <small><strong>dias</strong></small> ' : (dia==1 ? '1 dia, ' : '');
+
+          faltam += '<h1>'+(toString(hora).length) ? hora+'</h1>'+' <small><strong>horas</strong></small>  ' : '';
+
+          faltam += '<h1>'+(toString(min).length) ? min+'</h1>'+' <small><strong>minutos</strong></small>  ' : '';
+
+          faltam += seg+ ' <small><strong>segundos</strong></small>';   
+
+          if (dia+hora+min+seg > 0) {
+            document.getElementById('contador').innerHTML = faltam;
+            setTimeout(Contador,1000);
+          } else {
+            document.getElementById('contador').innerHTML = 'É hoje!!!!';
+            setTimeout(Contador,1000);
+          }
+        }
+      </script>
+    </head>
+  <body onload="Contador()">	
+    <h1>Faltam:</h1>
+    <h1 class="text-center">
+        <p id="contador"></p>
+    </h1>
+    <h1>Pra eu ir embora</h1>
+    <h1>😞</h1>
+  </body>
+</html>
